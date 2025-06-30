@@ -7,7 +7,7 @@ This project implements a **simple linear regression** to estimate the **price o
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 linear_regression_project/
 ├── data/
@@ -23,9 +23,9 @@ linear_regression_project/
 
 ---
 
-## 🧠 How It Works
+## How It Works
 
-### 🔸 Linear Regression
+###  Linear Regression
 
 The model tries to find a simple linear relationship between mileage and price:
 
@@ -35,7 +35,7 @@ The model tries to find a simple linear relationship between mileage and price:
 
 To improve stability and training efficiency, both **mileage** and **price** are **normalized** to a 0–1 scale before training.
 
-### 🔸 Training (`train.py`)
+###  Training (`train.py`)
 
 - Reads `data/data.csv`
 - Applies **gradient descent** to learn parameters `theta0` and `theta1`
@@ -45,7 +45,7 @@ To improve stability and training efficiency, both **mileage** and **price** are
   - Learned regression line (red)
 - Computes evaluation metrics (MSE, RMSE)
 
-### 🔸 Prediction (`predict.py`)
+###  Prediction (`predict.py`)
 
 - Loads the learned model and normalization values
 - Asks the user to input a mileage value
@@ -55,19 +55,19 @@ To improve stability and training efficiency, both **mileage** and **price** are
 
 ---
 
-## 📊 Implemented Bonus Features
+##  Implemented Bonus Features
 
-- ✅ Plotting the data to visualize the distribution
-- ✅ Plotting the regression line over the data
-- ✅ A program that calculates the **accuracy** of the algorithm:
+-  Plotting the data to visualize the distribution
+-  Plotting the regression line over the data
+-  A program that calculates the **accuracy** of the algorithm:
   - **MSE**: Mean Squared Error
   - **RMSE**: Root Mean Squared Error
 
 ---
 
-## 🧪 Key Concepts
+##  Key Concepts
 
-### 🔹 MSE – Mean Squared Error
+###  MSE – Mean Squared Error
 
 Measures how far off the predictions are from the actual prices, on average:
 
@@ -87,14 +87,14 @@ The square root of MSE. It has the **same unit as the predicted variable** (pric
 
 ---
 
-## 🔧 Hyperparameters
+##  Hyperparameters
 
-### 🔸 Learning Rate (`LEARNING_RATE`)
+###  Learning Rate (`LEARNING_RATE`)
 - Controls how fast the model updates during training
 - Too high → unstable / diverges
 - Too low → slow learning
 
-### 🔸 Epochs (`EPOCHS`)
+###  Epochs (`EPOCHS`)
 - The number of times the entire dataset is used during training
 - More epochs = better convergence (but slower)
 
