@@ -4,6 +4,7 @@ from math import sqrt
 
 
 def load_data(filename):
+    """Load evaluation data from a CSV file and return two lists: mileage (km) and price."""
     km = []
     price = []
     with open(filename, 'r') as f:
@@ -15,6 +16,9 @@ def load_data(filename):
 
 
 def normalize(values):
+    """Min-max normalize a list of values to the [0, 1] range.
+    Returns (normalized_values, min_value, max_value).
+    """
     min_val = min(values)
     max_val = max(values)
     normalized = [(v - min_val) / (max_val - min_val) for v in values]
@@ -22,12 +26,14 @@ def normalize(values):
 
 
 def load_model(filename):
+    """Load trained parameters and scaling ranges from the JSON model file."""
     with open(filename, 'r') as f:
         data = json.load(f)
         return data['theta0'], data['theta1'], data['min_km'], data['max_km'], data['min_price'], data['max_price']
 
 
 def evaluate_model(km_scaled, price_scaled, theta0, theta1):
+    """Compute MSE and RMSE on the normalized dataset using the provided thetas."""
     m = len(km_scaled)
     total_error = 0.0
 

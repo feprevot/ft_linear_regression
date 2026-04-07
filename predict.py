@@ -1,15 +1,19 @@
 import json
 
 def predict(km, theta0, theta1):
+    """Compute the scaled prediction: y = theta0 + theta1 * x."""
     return theta0 + theta1 * km
 
 def normalize(value, min_val, max_val):
+    """Min-max normalize a single value to the [0, 1] range."""
     return (value - min_val) / (max_val - min_val)
 
 def unnormalize(value, min_val, max_val):
+    """Convert a [0, 1] scaled value back to the original range."""
     return min_val + value * (max_val - min_val)
 
 def load_model(filename):
+    """Load the trained model parameters and scaling ranges from a JSON file."""
     with open(filename, 'r') as f:
         data = json.load(f)
         return data['theta0'], data['theta1'], data['min_km'], data['max_km'], data['min_price'], data['max_price']
