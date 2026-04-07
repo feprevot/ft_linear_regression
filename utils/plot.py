@@ -1,5 +1,4 @@
 import matplotlib
-matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 def plot_data_with_regression(km, price, theta0, theta1, min_km, max_km, min_price, max_price):

@@ -1,7 +1,6 @@
 import csv
 import json
 from utils.plot import plot_data_with_regression
-from math import sqrt
 
 LEARNING_RATE = 0.1
 EPOCHS = 1000
@@ -15,21 +14,6 @@ def load_data(filename):
             km.append(float(row['km']))
             price.append(float(row['price']))
     return km, price
-
-
-def evaluate_model(km_scaled, price_scaled, theta0, theta1):
-    m = len(km_scaled)
-    total_error = 0.0
-
-    for i in range(m):
-        prediction = theta0 + theta1 * km_scaled[i]
-        error = prediction - price_scaled[i]
-        total_error += error ** 2
-
-    mse = total_error / m
-    rmse = sqrt(mse)
-    return mse, rmse
-
 
 
 def normalize(values):
@@ -84,6 +68,4 @@ if __name__ == "__main__":
 
     save_model(theta0, theta1, min_km, max_km, min_price, max_price, "model/thetas.json")
     print(f"Training complete. theta0 = {theta0}, theta1 = {theta1}")
-    mse, rmse = evaluate_model(km_scaled, price_scaled, theta0, theta1)
-    print(f"Model evaluation: MSE = {mse:.4f}, RMSE = {rmse:.4f}")
     plot_data_with_regression(km, price, theta0, theta1, min_km, max_km, min_price, max_price)

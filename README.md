@@ -4,6 +4,7 @@ This project implements a **simple linear regression** to estimate the **price o
 
 1. `train.py` – Trains the model using historical data.
 2. `predict.py` – Predicts the price of a car for a given mileage.
+3. `evaluate.py` – Evaluates the trained model (MSE / RMSE).
 
 ---
 
@@ -16,6 +17,7 @@ linear_regression_project/
 │ └── thetas.json # File containing learned parameters
 ├── train.py # Training script
 ├── predict.py # Prediction script
+├── evaluate.py # Evaluation script
 ├── utils/
 │ └── plot.py # Graph plotting (data + regression line)
 └── README.md # This file
@@ -43,7 +45,14 @@ To improve stability and training efficiency, both **mileage** and **price** are
 - Plots:
   - Data points (blue)
   - Learned regression line (red)
-- Computes evaluation metrics (MSE, RMSE)
+
+###  Evaluation (`evaluate.py`)
+
+- Loads `model/thetas.json`
+- Re-loads `data/data.csv`
+- Computes evaluation metrics:
+  - **MSE**: Mean Squared Error
+  - **RMSE**: Root Mean Squared Error
 
 ###  Prediction (`predict.py`)
 
@@ -52,6 +61,25 @@ To improve stability and training efficiency, both **mileage** and **price** are
 - Normalizes the input
 - Applies the model to estimate the price
 - Unnormalizes the output and prints the estimated price
+
+---
+
+## Run with a virtual environment (venv)
+
+On macOS (zsh):
+
+1. Create the virtual environment:
+   - `python3 -m venv .venv`
+2. Activate it:
+   - `source .venv/bin/activate`
+3. Install dependencies:
+   - `pip install -r requirements.txt`
+4. Run the scripts:
+   - Train: `python train.py`
+   - Evaluate: `python evaluate.py`
+   - Predict: `python predict.py`
+5. (Optional) Deactivate when done:
+   - `deactivate`
 
 ---
 
@@ -97,6 +125,4 @@ The square root of MSE. It has the **same unit as the predicted variable** (pric
 ###  Epochs (`EPOCHS`)
 - The number of times the entire dataset is used during training
 - More epochs = better convergence (but slower)
-
----
 
