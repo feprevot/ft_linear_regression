@@ -2,7 +2,7 @@ import json
 
 def predict(km, theta0, theta1):
     """Compute the scaled prediction: y = theta0 + theta1 * x."""
-    return theta0 + theta1 * km
+    return theta0 + (theta1 * km)
 
 def normalize(value, min_val, max_val):
     """Min-max normalize a single value to the [0, 1] range."""
@@ -21,9 +21,10 @@ def load_model(filename):
 if __name__ == "__main__":
     try:
         theta0, theta1, min_km, max_km, min_price, max_price = load_model("model/thetas.json")
+        model_loaded = True
     except:
-        print("Launch train.py first.")
-        exit()
+        theta0, theta1 = 0.0, 0.0
+        model_loaded = False
 
     try:
         user_input = input("car mileage : ")
@@ -32,8 +33,11 @@ if __name__ == "__main__":
         print("bad entry.")
         exit()
 
-    normalized_km = normalize(km, min_km, max_km)
-    scaled_price = predict(normalized_km, theta0, theta1)
-    estimated_price = unnormalize(scaled_price, min_price, max_price)
+    if model_loaded:
+        normalized_km = normalize(km, min_km, max_km)
+        scaled_price = predict(normalized_km, theta0, theta1)
+        estimated_price = unnormalize(scaled_price, min_price, max_price)
+    else:
+        estimated_price = predict(km, theta0, theta1)
 
     print(f"estimated price : {estimated_price:.2f} €")

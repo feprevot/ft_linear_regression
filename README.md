@@ -65,64 +65,21 @@ To improve stability and training efficiency, both **mileage** and **price** are
 ---
 
 ## Run with a virtual environment (venv)
-
-On macOS (zsh):
-
-1. Create the virtual environment:
    - `python3 -m venv .venv`
-2. Activate it:
    - `source .venv/bin/activate`
-3. Install dependencies:
    - `pip install -r requirements.txt`
-4. Run the scripts:
-   - Train: `python train.py`
-   - Evaluate: `python evaluate.py`
-   - Predict: `python predict.py`
-5. (Optional) Deactivate when done:
-   - `deactivate`
-
 ---
 
-##  Implemented Bonus Features
+## Glossary
 
--  Plotting the data to visualize the distribution
--  Plotting the regression line over the data
--  A program that calculates the **accuracy** of the algorithm:
-  - **MSE**: Mean Squared Error
-  - **RMSE**: Root Mean Squared Error
-
----
-
-##  Key Concepts
-
-###  MSE – Mean Squared Error
-
-Measures how far off the predictions are from the actual prices, on average:
-
-\[
-\text{MSE} = \frac{1}{m} \sum_{i=1}^{m} (\text{prediction}_i - \text{actual}_i)^2
-\]
-
-Lower is better. A value of 0 means perfect prediction.
-
-### 🔹 RMSE – Root Mean Squared Error
-
-The square root of MSE. It has the **same unit as the predicted variable** (price), so it's easier to interpret.
-
-\[
-\text{RMSE} = \sqrt{\text{MSE}}
-\]
-
----
-
-##  Hyperparameters
-
-###  Learning Rate (`LEARNING_RATE`)
-- Controls how fast the model updates during training
-- Too high → unstable / diverges
-- Too low → slow learning
-
-###  Epochs (`EPOCHS`)
-- The number of times the entire dataset is used during training
-- More epochs = better convergence (but slower)
+| Term | Definition |
+|------|-----------|
+| **θ0 (theta0)** | Y-intercept of the regression line — the base price when mileage is 0. |
+| **θ1 (theta1)** | Slope of the regression line — how much the price changes per unit of mileage. Negative here: more km → lower price. |
+| **Linear Regression** | A method that models the relationship between two variables as a straight line: `price = θ0 + θ1 × mileage`. |
+| **Gradient Descent** | An iterative algorithm that adjusts θ0 and θ1 step by step to minimize prediction error. |
+| **Learning Rate** | Controls the size of each step during gradient descent. Too high → diverges. Too low → converges slowly. |
+| **Epochs** | The number of full passes over the training dataset. More epochs → more refined parameters. |
+| **Normalization** | Rescaling values to a [0, 1] range so that mileage and price are on the same scale during training. |
+| **Error** | Difference between the predicted price and the actual price for a given data point: `prediction − price`. |
 

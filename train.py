@@ -28,7 +28,7 @@ def normalize(values):
 
 def predict(km, theta0, theta1):
     """Compute the model prediction (in scaled space): y = theta0 + theta1 * x."""
-    return theta0 + theta1 * km
+    return theta0 + (theta1 * km)
 
 def train(km, price):
     """Train theta0 and theta1 using gradient descent on the normalized dataset.
@@ -48,12 +48,11 @@ def train(km, price):
             sum_error0 += error
             sum_error1 += error * km[i]
 
-        tmp_theta0 = LEARNING_RATE * (sum_error0 / m)
-        tmp_theta1 = LEARNING_RATE * (sum_error1 / m)
+        grad_theta0 = LEARNING_RATE * (sum_error0 / m)
+        grad_theta1 = LEARNING_RATE * (sum_error1 / m)
 
-        theta0 -= tmp_theta0
-        theta1 -= tmp_theta1
-
+        theta0 -= grad_theta0
+        theta1 -= grad_theta1
     return theta0, theta1
 
 def save_model(theta0, theta1, min_km, max_km, min_price, max_price, filename):
