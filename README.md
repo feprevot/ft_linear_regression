@@ -27,7 +27,6 @@ uses them to estimate the price of any given mileage.
 - [The dataset](#the-dataset)
 - [Hyperparameters](#hyperparameters)
 - [Glossary](#glossary)
-- [Notes](#notes)
 
 ---
 
@@ -173,17 +172,3 @@ Defined at the top of `train.py`:
 | **Epochs** | Number of full passes over the training dataset. |
 | **Normalization** | Rescaling values to `[0, 1]` so mileage and price share the same scale during training. |
 | **Error** | Difference between the predicted and the actual price for a data point: `prediction − price`. |
-
----
-
-## Notes
-
-- **Create the `model/` folder before training.** `train.py` writes to
-  `model/thetas.json`; if the folder is missing, the run fails with
-  `FileNotFoundError`. Run `mkdir -p model` once (or add
-  `os.makedirs("model", exist_ok=True)` in `train.py`).
-- The training parameters are learned in **normalized space**; `theta0` and
-  `theta1` are therefore not the raw-euro intercept/slope. The conversion back to
-  euros happens through the stored `min`/`max` bounds at prediction time.
-- The subject's bonus part (model evaluation, e.g. MSE / RMSE) is **not yet
-  implemented** in this repository — there is no `evaluate.py`.
